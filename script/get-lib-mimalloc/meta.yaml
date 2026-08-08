@@ -42,16 +42,30 @@ deps:
     - MLC_GIT_SHA
     _submodules.:
     - MLC_GIT_SUBMODULES
+  skip_if_env:
+    MLC_MIMALLOC_LIB_PATH_PROVIDED:
+    - 'yes'
 - tags: get,cmake
+  skip_if_env:
+    MLC_MIMALLOC_LIB_PATH_PROVIDED:
+    - 'yes'
 - env:
     MLC_GENERIC_SYS_UTIL_IGNORE_MISSING_PACKAGE: true
   tags: get,generic-sys-util,_build-essential
+  skip_if_env:
+    MLC_MIMALLOC_LIB_PATH_PROVIDED:
+    - 'yes' 
 prehook_deps: []
 posthook_deps: []
 post_deps: []
 
 # Variations
 variations:
+  path.#:
+    group: install-mode
+    env:
+      MLC_MIMALLOC_LIB_PATH: '#'
+      MLC_MIMALLOC_LIB_PATH_PROVIDED: 'yes'
   url.#:
     env:
       MLC_GIT_URL: '#'
